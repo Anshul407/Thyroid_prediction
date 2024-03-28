@@ -56,50 +56,67 @@ def main():
     sex_encoded = 1 if sex == 'Female' else 0
     on_thyroxine_encoded = 1 if on_thyroxine == 'Yes' else 0
     query_on_thyroxine_encoded = 1 if query_on_thyroxine == 'Yes' else 0
-    # Convert other categorical inputs to numeric similarly
-
+    on_antithyroid_medication_encoded = 1 if on_antithyroid_medication == 'Yes' else 0
+    sick_encoded = 1 if sick == 'Yes' else 0
+    pregnant_encoded = 1 if pregnant == 'Yes' else 0
+    thyroid_surgery_encoded = 1 if thyroid_surgery == 'Yes' else 0
+    i131_treatment_encoded = 1 if i131_treatment == 'Yes' else 0
+    query_hypothyroid_encoded = 1 if query_hypothyroid == 'Yes' else 0
+    query_hyperthyroid_encoded = 1 if query_hyperthyroid == 'Yes' else 0
+    lithium_encoded = 1 if lithium == 'Yes' else 0
+    goitre_encoded = 1 if goitre == 'Yes' else 0
+    tumor_encoded = 1 if tumor == 'Yes' else 0
+    psych_encoded = 1 if psych == 'Yes' else 0
+    tsh_measured_encoded = 1 if tsh_measured == 'Yes' else 0
+    t3_measured_encoded = 1 if t3_measured == 'Yes' else 0
+    tt4_measured_encoded = 1 if tt4_measured == 'Yes' else 0
+    t4u_measured_encoded = 1 if t4u_measured == 'Yes' else 0
+    fti_measured_encoded = 1 if fti_measured == 'Yes' else 0
+    tbg_measured_encoded = 1 if tbg_measured == 'Yes' else 0
+    
     # Prepare input data as DataFrame
-    data ={
-        'age': [age],
-        'sex': [sex_encoded],
-        'on_thyroxine': [on_thyroxine_encoded],
-        'query_on_thyroxine': [query_on_thyroxine_encoded],
-        'on_antithyroid_medication': [on_antithyroid_medication],
-        'sick': [sick],
-        'pregnant': [pregnant],
-        'thyroid_surgery': [thyroid_surgery],
-        'I131 treatment': [i131_treatment],
-        'query hypothyroid': [query_hypothyroid],
-        'query hyperthyroid': [query_hyperthyroid],
-        'lithium': [lithium],
-        'goitre': [goitre],
-        'tumor': [tumor],
-        'hypopituitary': [hypopituitary],
-        'psych': [psych],
-        'TSH measured': [tsh_measured],
-        'TSH': [tsh],
-        'T3 measured': [t3_measured],
-        'T3': [t3],
-        'TT4 measured': [tt4_measured],
-        'TT4': [tt4],
-        'T4U measured': [t4u_measured],
-        'T4U': [t4u],
-        'FTI measured': [fti_measured],
-        'FTI': [fti],
-        'TBG measured': [tbg_measured],
-        'TBG': [tbg],
-        'referral source_STMW': [referral_source_stmw],
-        'referral source_SVHC': [referral_source_svhc],
-        'referral source_SVHD': [referral_source_svhd],
-        'referral source_SVI': [referral_source_svi],
-        'referral source_other': [referral_source_other]
+    data = {
+        'age': age,
+        'sex': sex_encoded,
+        'on_thyroxine': on_thyroxine_encoded,
+        'query_on_thyroxine': query_on_thyroxine_encoded,
+        'on_antithyroid_medication': on_antithyroid_medication_encoded,
+        'sick': sick_encoded,
+        'pregnant': pregnant_encoded,
+        'thyroid_surgery': thyroid_surgery_encoded,
+        'i131_treatment': i131_treatment_encoded,
+        'query_hypothyroid': query_hypothyroid_encoded,
+        'query_hyperthyroid': query_hyperthyroid_encoded,
+        'lithium': lithium_encoded,
+        'goitre': goitre_encoded,
+        'tumor': tumor_encoded,
+        'hypopituitary': hypopituitary,
+        'psych': psych_encoded,
+        'tsh_measured': tsh_measured_encoded,
+        'tsh': tsh,
+        't3_measured': t3_measured_encoded,
+        't3': t3,
+        'tt4_measured': tt4_measured_encoded,
+        'tt4': tt4,
+        't4u_measured': t4u_measured_encoded,
+        't4u': t4u,
+        'fti_measured': fti_measured_encoded,
+        'fti': fti,
+        'tbg_measured': tbg_measured_encoded,
+        'tbg': tbg,
+        'referral_source_STMW': 1 if referral_source_stmw == 'Yes' else 0,
+        'referral_source_SVHC': 1 if referral_source_svhc == 'Yes' else 0,
+        'referral_source_SVHD': 1 if referral_source_svhd == 'Yes' else 0,
+        'referral_source_SVI': 1 if referral_source_svi == 'Yes' else 0,
+        'referral_source_other': 1 if referral_source_other == 'Yes' else 0
     }
-
-    data_array = np.array(list(data.values())).reshape(1, -1)  # Convert to numpy array and reshape
+    
+    # Create a DataFrame from the input data
+    data_df = pd.DataFrame(data, index=[0])
 
     # Predict thyroid condition
     if st.button('Predict'):
-        prediction = predict_thyroid(data_array)
+        prediction = predict_thyroid(data_df.values)
         # You can customize the output based on your model's prediction
         st.success(f'Predicted Thyroid Condition: {prediction[0]}')
 
