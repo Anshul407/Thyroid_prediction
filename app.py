@@ -114,16 +114,10 @@ def main():
     # Create a DataFrame from the input data
     data_df = pd.DataFrame(data, index=[0])
 
-    # Predict thyroid condition
     if st.button('Predict'):
         prediction = predict_thyroid(data_df.values)
-    # Determine the prediction label
-    if prediction[0] == 1.0:
-        thyroid_condition = "positive"
-    else:
-        thyroid_condition = "negative"
-    # Display the prediction result
-    st.success(f'Predicted Thyroid Condition: {thyroid_condition}')
+        # You can customize the output based on your model's prediction
+        st.success(f'Predicted Thyroid Condition: {prediction[0]}')}
 
 # Run the app
 if __name__ == '__main__':
