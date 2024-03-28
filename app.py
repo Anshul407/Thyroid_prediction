@@ -50,7 +50,7 @@ def main():
     referral_source_svhc = st.radio('Referral Source SVHC', ['No', 'Yes'])
     referral_source_svhd = st.radio('Referral Source SVHD', ['No', 'Yes'])
     referral_source_svi = st.radio('Referral Source SVI', ['No', 'Yes'])
-    referral_source_other = st.radio('Referral Source Other', ['No', 'Yes'])
+    
 
     # Convert categorical input to numeric
     sex_encoded = 1 if sex == 'Female' else 0
@@ -108,7 +108,7 @@ def main():
         'referral_source_SVHC': 1 if referral_source_svhc == 'Yes' else 0,
         'referral_source_SVHD': 1 if referral_source_svhd == 'Yes' else 0,
         'referral_source_SVI': 1 if referral_source_svi == 'Yes' else 0,
-        'referral_source_other': 1 if referral_source_other == 'Yes' else 0
+        
     }
     
     # Create a DataFrame from the input data
