@@ -118,7 +118,7 @@ def main():
     if st.button('Predict'):
         prediction = predict_thyroid(data_df.values)
     # Determine the prediction label
-    if prediction[0] == 1:
+    if prediction[0] == 1.0:
         thyroid_condition = "positive"
     else:
         thyroid_condition = "negative"
