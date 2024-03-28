@@ -117,7 +117,7 @@ def main():
     if st.button('Predict'):
         prediction = predict_thyroid(data_df.values)
         # You can customize the output based on your model's prediction
-        st.success(f'Predicted Thyroid Condition: {prediction[0]}')}
+        st.success(f'Predicted Thyroid Condition: {prediction[0]}')
 
 # Run the app
 if __name__ == '__main__':
