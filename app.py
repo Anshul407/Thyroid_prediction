@@ -58,7 +58,7 @@ def main():
     # Convert other categorical inputs to numeric similarly
 
     # Prepare input data as DataFrame
-    data = pd.DataFrame({
+    data ={
         'age': [age],
         'sex': [sex_encoded],
         'on_thyroxine': [on_thyroxine_encoded],
@@ -92,11 +92,13 @@ def main():
         'referral source_SVHD': [referral_source_svhd],
         'referral source_SVI': [referral_source_svi],
         'referral source_other': [referral_source_other]
-    })
+    }
+
+    data_array = np.array(list(data.values())).reshape(1, -1)  # Convert to numpy array and reshape
 
     # Predict thyroid condition
     if st.button('Predict'):
-        prediction = predict_thyroid(data)
+        prediction = predict_thyroid(data_array)
         # You can customize the output based on your model's prediction
         st.success(f'Predicted Thyroid Condition: {prediction[0]}')
 
